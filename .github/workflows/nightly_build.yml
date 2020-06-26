@@ -47,8 +47,8 @@ jobs:
         python -c "import flopy; print('flopy: {}'.format(flopy.__version__))"
         python -c "import pymake; print('pymake: {}'.format(pymake.__version__))"
     - name: Run t000_setup.py
-      shell: bash -l {0}
       run: |
+        which python
         cd autotest
         python test000_setup.py
         cd ..
