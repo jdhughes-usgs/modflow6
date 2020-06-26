@@ -28,17 +28,14 @@ jobs:
       run: |
         sudo ln -fs /usr/bin/gfortran-9 /usr/local/bin/gfortran
         gfortran --version
-        which python
     - name: Install and print system dependencies (macOS)
       if: runner.os == 'macOS'
       run: |
         gfortran --version
-        which python
     - name: Install and print system dependencies (Windows)
       if: runner.os == 'Windows'
       run: |
         gfortran --version
-        where python
     - run: which python
     - name: Install python packages
       run: |
@@ -47,6 +44,8 @@ jobs:
         pip install https://github.com/modflowpy/flopy/zipball/develop
         pip install https://github.com/modflowpy/pymake/zipball/master
         pip install https://github.com/Deltares/amipy/zipball/master
+        python -c "import flopy; print('flopy: {}'.format(flopy.__version__))"
+        python -c "import pymake; print('pymake: {}'.format(pymake.__version__))"
     - name: Run t000_setup.py
       shell: bash -l {0}
       run: |
