@@ -20,7 +20,7 @@ jobs:
       uses: goanpeca/setup-miniconda@v1.6.0
       with:
         auto-update-conda: true
-        python-version: ${{ matrix.python-version }}
+        miniconda-version: "latest"
     - name: Install and print system dependencies (Linux)
       if: runner.os == 'Linux'
       run: |
@@ -38,10 +38,13 @@ jobs:
       run: |
         conda info
         conda install pip requests appdirs numpy matplotlib
+        pip config --user set global.progress_bar off
         pip install https://github.com/modflowpy/flopy/zipball/develop
         pip install https://github.com/modflowpy/pymake/zipball/master
+        pip install https://github.com/Deltares/amipy/zipball/master
     - name: Run t000_setup.py
+      shell: bash -l {0}
       run: |
-        cd ./autotest
+        cd autotest
         python test000_setup.py
         cd ..
