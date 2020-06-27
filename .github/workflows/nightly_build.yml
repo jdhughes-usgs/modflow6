@@ -40,7 +40,7 @@ jobs:
     - name: Install python packages
       run: |
         conda info
-        conda install pip requests appdirs numpy matplotlib
+        conda install pip requests appdirs numpy matplotlib nose
         pip install https://github.com/modflowpy/flopy/zipball/develop
         pip install https://github.com/modflowpy/pymake/zipball/master
         pip install https://github.com/Deltares/amipy/zipball/master
