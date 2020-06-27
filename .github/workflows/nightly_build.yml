@@ -4,10 +4,6 @@ on:
   schedule:
     # - cron: '0 2 * * *' # run at 2 AM UTC
     - cron: '*/10 * * * *' # run every 10 minutes
-  push:
-    branches: [develop]
-  pull_request:
-    branches: [develop]
 
 jobs:
   test:
@@ -43,17 +39,13 @@ jobs:
       run: |
         conda info
         conda install pip requests appdirs nose
+        # use pip to install numpy and matplotlib because of a windows issue
         pip install numpy
-        # pip install numpy matplotlib
-        # pip install https://github.com/modflowpy/flopy/zipball/develop
         pip install https://github.com/modflowpy/pymake/zipball/master
-        # pip install https://github.com/Deltares/amipy/zipball/master
-        # python -c "import flopy; print('flopy: {}'.format(flopy.__version__))"
         python -c "import pymake; print('pymake: {}'.format(pymake.__version__))"
     - name: Build and zip applications
       run: |
         nosetests -v -w ./autotest build_nightly.py
-        ls autotest/temp
 
     # Deploy releases
     - name: Deploy Linux release
