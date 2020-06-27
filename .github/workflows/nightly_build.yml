@@ -50,10 +50,6 @@ jobs:
         python -c "import numpy as np; print('numpy version {}'.format(np.__version__))"
         python -c "import pymake; print('pymake: {}'.format(pymake.__version__))"
         python -c "import pymake; pymakepth = pymake.__path__[0]; print('pymake is installed in {}'.format(pymakepth))"
-    - name: Print python package versions
-      run: |
-        python --version
-        python -c "import pymake; print('pymake: {}'.format(pymake.__version__))"
     - name: Build and zip applications
       run: |
         nosetests -v -w ./autotest build_nightly.py
