@@ -49,6 +49,5 @@ jobs:
     - name: Run t000_setup.py
       run: |
         which python
-        cd autotest
-        python test000_setup.py
-        cd ..
+        nosetests -v -w ./autotest build_nightly.py
+        ls autotest/temp
