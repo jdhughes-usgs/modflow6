@@ -36,18 +36,17 @@ jobs:
       if: runner.os == 'Windows'
       run: |
         gfortran --version
-    - run: which python
     - name: Install python packages
       run: |
         conda info
-        conda install pip requests appdirs numpy matplotlib nose
+        conda install pip requests appdirs nose
+        pip install numpy matplotlib
         pip install https://github.com/modflowpy/flopy/zipball/develop
         pip install https://github.com/modflowpy/pymake/zipball/master
         pip install https://github.com/Deltares/amipy/zipball/master
         python -c "import flopy; print('flopy: {}'.format(flopy.__version__))"
         python -c "import pymake; print('pymake: {}'.format(pymake.__version__))"
-    - name: Run t000_setup.py
+    - name: Build and zip applications
       run: |
-        which python
         nosetests -v -w ./autotest build_nightly.py
         ls autotest/temp
