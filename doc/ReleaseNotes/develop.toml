@@ -46,6 +46,10 @@ subsection = "advanced"
 description = "A new chapter describing the IMPLICIT option in the LAK Package has been added to the Supplemental Technical Information document.  The new option treats lake stage as an additional unknown in the groundwater matrix, solving it simultaneously with groundwater heads and assembling seepage as conductance couplings between lake and cell rows (in the matrix). Non-seepage budget terms are linearized and incorporated into the matrix. Newton under-relaxation is recommended for lakes that may dry to prevent stage from dropping below the lake bottom. The implicit approach eliminates stage lag, greatly accelerates convergence for strongly coupled lakes, and reliably solves cases where the default method may struggle. Ultimately, both formulations should yield equivalent water balances and results at convergence, the new option may offer speedier solutions in some cases."
 
 [[items]]
+subsection = "solution"
+description = "Added an algebraic multigrid (AMG) preconditioner to the Iterative Model Solution (IMS) package as an alternative to the incomplete LU (ILU) factorization preconditioners, activated with PRECONDITIONER\\_TYPE AMG in the IMS LINEAR block. AMG can reduce the number of solver iterations relative to ILU for models with large hydraulic-property contrasts between adjacent cells, such as layered aquifer/confining-unit systems or strongly anisotropic media."
+
+[[items]]
 section = "fixes"
 subsection = "stress"
 description = "The default values for DENSITY\\_WATER, HEAT\\_CAPACITY\\_WATER, LATENT\\_HEAT\\_VAPORIZATION specified in the OPTIONS block were not set as indicated in the MF6IO guide.  Defaults for these three variables now set as documented in the MF6IO guide."
