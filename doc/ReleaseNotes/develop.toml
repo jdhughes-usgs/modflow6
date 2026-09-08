@@ -290,3 +290,8 @@ description = "The PRT model previously accumulated mass for particles only from
 section = "fixes"
 subsection = "model"
 description = "The PRT model could report particle coordinates incorrectly on rotated grids with quad refinement. The cumulative coordinate transformation applied by the tracking method was not correctly reversed before coordinates were reported, adding an offset that grows with the grid rotation angle (and with cell size). The overall path was not affected. Reported coordinates on affected models may change slightly."
+
+[[items]]
+section = "fixes"
+subsection = "advanced"
+description = "A Lake (LAK) Package using the IMPLICIT option reported roughly twice the outlet flow to the Water Mover (MVR) Package whenever any lake was solved by the substitution fallback. The mover provider term was accumulated once by the implicit formulation and again at the end of the fallback solve, so TO-MVR was about double the outlet discharge and the surplus appeared as a positive EXT-OUTFLOW, an apparent inflow that allowed the lake budget to close on the wrong flows. The mover term is now accumulated once, after the fallback stages are known. Models that do not use the IMPLICIT option, or that use it without a lake on the fallback, are unaffected."
